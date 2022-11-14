@@ -10,8 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity"
-        >
+        tools:context=".MainActivity">
 
         <ProgressBar
             android:layout_width="wrap_content"
@@ -24,23 +23,7 @@
             app:layout_constraintHorizontal_bias="0.471"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.295"/>. .
-
-<!--        <com.google.android.material.button.MaterialButton-->
-<!--            android:id="@+id/Control_Button"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:text="Start"-->
-<!--            android:textSize="50dp"-->
-<!--            android:textStyle="bold"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.498"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            />-->
-
+            app:layout_constraintVertical_bias="0.295"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
