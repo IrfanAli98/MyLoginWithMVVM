@@ -42,4 +42,10 @@ class RegistrationPage : AppCompatActivity() {
                 Toast.makeText(this, "Registration Incomplete", Toast.LENGTH_SHORT).show()}
         }
     }
+
+    override fun onBackPressed() {
+        val intent= Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
 }

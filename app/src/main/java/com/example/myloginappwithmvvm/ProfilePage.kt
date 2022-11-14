@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import com.example.myloginappwithmvvm.databinding.ActivityProfilePageBinding
 
@@ -35,5 +36,18 @@ class ProfilePage : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+    override fun onBackPressed() {
+        val alertdialog : AlertDialog = AlertDialog.Builder(this).create()
+        alertdialog.setMessage("Do you want to exit")
+
+        alertdialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes"){
+                dialog, which-> finish()
+            dialog.dismiss()}
+        alertdialog.setButton(AlertDialog.BUTTON_NEGATIVE,"No"){
+                dialog, which->
+            dialog.dismiss()
+        }
+        alertdialog.show()
     }
 }
