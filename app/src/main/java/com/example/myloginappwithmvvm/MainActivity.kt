@@ -12,14 +12,13 @@ import com.example.myloginappwithmvvm.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var dataBinding: ActivityMainBinding
-//    private lateinit var repository: SharedPreferenceRepository
     private lateinit var factory: RegistrationViewModelFactory
     private lateinit var viewModel: RegistrationViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         dataBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-//        repository = SharedPreferenceRepository(this)
+        factory = RegistrationViewModelFactory(SharedPreferenceRepository(this))
         viewModel = ViewModelProvider(this, factory)[RegistrationViewModel::class.java]
 
         dataBinding.btnRegLink.setOnClickListener(this)
@@ -37,23 +36,23 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
 
-        when (view!!.id) {
+        when (view.id) {
             R.id.btn_login -> {
-                if (dataBinding.etPassword.text.toString()
-                        .isNotEmpty() && dataBinding.etUserName.text.toString().isNotEmpty()
+                if (dataBinding.etPassword.text.toString().isNotEmpty()
+                    && dataBinding.etUserName.text.toString().isNotEmpty()
                 ) {
-                    if (viewModel.getPassword().toString() == "" && viewModel.getUserName().toString() == "") {
+                    if (viewModel.getPassword()== "" && viewModel.getUserName() == "") {
                         Toast.makeText(this, "Complete Registration", Toast.LENGTH_SHORT).show()
-                    }else if (dataBinding.etUserName.text.toString() == viewModel.getUserName().toString() &&
-                        dataBinding.etPassword.text.toString() == viewModel.getPassword().toString()
+                    }else if (dataBinding.etUserName.text.toString() == viewModel.getUserName() &&
+                        dataBinding.etPassword.text.toString() == viewModel.getPassword()
                     ) {
                         val intent = Intent(this@MainActivity, ProfilePage::class.java)
                         startActivity(intent)
                         finish()
                     }
-                    else if (dataBinding.etUserName.text.toString() != viewModel.getUserName().toString()) {
+                    else if (dataBinding.etUserName.text.toString()!= viewModel.getUserName()) {
                         Toast.makeText(this, "Invalid username", Toast.LENGTH_SHORT).show()
-                    }else if (dataBinding.etPassword.text.toString() != viewModel.getPassword().toString()) {
+                    }else if (dataBinding.etPassword.text.toString() != viewModel.getPassword()) {
                         Toast.makeText(this, "Invalid password", Toast.LENGTH_SHORT).show()
                     }
                 } else {

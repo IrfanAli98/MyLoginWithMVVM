@@ -12,13 +12,12 @@ import com.example.myloginappwithmvvm.databinding.ActivityProfilePageBinding
 
 class ProfilePage : AppCompatActivity() {
     private lateinit var dataBinding: ActivityProfilePageBinding
-//    private lateinit var repository: SharedPreferenceRepository
     private lateinit var viewModel: RegistrationViewModel
     private lateinit var factory: RegistrationViewModelFactory
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         dataBinding= DataBindingUtil.setContentView(this, R.layout.activity_profile_page)
-//        repository = SharedPreferenceRepository(this)
+        factory = RegistrationViewModelFactory(SharedPreferenceRepository(this))
         viewModel = ViewModelProvider(this, factory)[RegistrationViewModel::class.java]
         dataBinding.tvWelcome.text = "Welcom"+" "+viewModel.getUserName()+" "+ viewModel.getPassword()
 
