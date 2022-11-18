@@ -7,16 +7,20 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import com.example.myloginappwithmvvm.databinding.ActivityProfilePageBinding
 
 class ProfilePage : AppCompatActivity() {
     private lateinit var dataBinding: ActivityProfilePageBinding
-    private lateinit var repository: SharedPreferenceRepository
+//    private lateinit var repository: SharedPreferenceRepository
+    private lateinit var viewModel: RegistrationViewModel
+    private lateinit var factory: RegistrationViewModelFactory
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         dataBinding= DataBindingUtil.setContentView(this, R.layout.activity_profile_page)
-        repository = SharedPreferenceRepository(this)
-        dataBinding.tvWelcome.text = "Welcom"+" "+repository.getUserName()
+//        repository = SharedPreferenceRepository(this)
+        viewModel = ViewModelProvider(this, factory)[RegistrationViewModel::class.java]
+        dataBinding.tvWelcome.text = "Welcom"+" "+viewModel.getUserName()+" "+ viewModel.getPassword()
 
     }
 
@@ -28,8 +32,8 @@ class ProfilePage : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.item_logout->{
-                repository.setUserName("")
-                repository.setPassword("","")
+                viewModel.setUserName("")
+                viewModel.setPassword("","")
                 val intent = Intent(this@ProfilePage, MainActivity::class.java)
                 startActivity(intent)
                 finish()

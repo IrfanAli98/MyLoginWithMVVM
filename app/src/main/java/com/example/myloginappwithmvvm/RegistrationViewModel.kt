@@ -11,4 +11,10 @@ class RegistrationViewModel(val repository: SharedPreferenceRepository) : ViewMo
     fun setPassword(password: String, cnfPassword: String){
         repository.setPassword(password, cnfPassword)
     }
+    fun getUserName(){
+        repository.getUserName()
+    }
+    fun getPassword(){
+        repository.getPassword()
+    }
 }
